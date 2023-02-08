@@ -1,0 +1,13 @@
+<div class="list-group">
+    <a routerLink="/products" class="list-group-item list-group-item-action active list-group-item-success" aria-current="true"
+    (click)="selectCategory()" 
+    [class.active]="displayAll"
+    >
+      Kategoriler
+    </a>
+    <a *ngFor="let category of categories" routerLink="/products/category/{{category.id}}" class="list-group-item list-group-item-action list-group-item-success"
+    (click)="selectCategory(category)" 
+    
+    >{{category.name}}</a>
+   
+  </div>

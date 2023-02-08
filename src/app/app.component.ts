@@ -1,3 +1,5 @@
+import { ProductService } from './services/product.service';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-app';
+
+
+  constructor(private http:HttpClient,private productService:ProductService) { }
+
+  
+
 }

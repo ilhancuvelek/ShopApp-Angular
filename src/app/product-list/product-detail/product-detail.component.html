@@ -1,0 +1,19 @@
+<div class="card mb-3 border border-success" *ngIf="product else noProduct">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <img src="/assets/images/{{product.imageUrl}}" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">Ürün Adı : {{product.name}}</h5>
+                <p class="card-text">Açıklama :{{product.description}}</p>
+                <p class="card-text">Fiyat : {{product.price}} ₺ </p>
+                <!-- <button (click)="unselectProduct()" class="btn btn-success">Seçimi Kaldır</button> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #noProduct>
+    <div class="alert alert-warning">no products</div>
+</ng-template>
