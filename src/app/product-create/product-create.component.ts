@@ -1,3 +1,5 @@
+import { CategoryService } from './../services/category.service';
+import { Category } from './../models/category';
 import { ProductService } from './../services/product.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,9 +11,11 @@ import { Router } from '@angular/router';
 })
 export class ProductCreateComponent implements OnInit {
 
-  constructor(private productService:ProductService,private router:Router) { }
+  categories:Category[]=[]
+  constructor(private productService:ProductService,private categoryService:CategoryService,private router:Router) { }
 
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(data=>{this.categories=data})
   }
   saveProduct(name,imageUrl,description,price,isActive,categoryId){
 

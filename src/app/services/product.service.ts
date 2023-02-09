@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class ProductService {
 
-  private url ="api-url"
+  private url ="https://ng-shopapp-dc819-default-rtdb.firebaseio.com/"
 
   constructor(private http:HttpClient) { }
 

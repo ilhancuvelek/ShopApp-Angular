@@ -18,7 +18,7 @@ export class ProductListComponent implements OnInit {
   // selectedProduct:Product | null
 
   constructor(private route:ActivatedRoute,private productService:ProductService) { 
-    this.productRepository=new ProductRepository()
+    //this.productRepository=new ProductRepository()
     // this.products=this.productRepository.getProducts()
   }
 

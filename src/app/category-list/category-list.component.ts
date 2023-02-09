@@ -1,3 +1,4 @@
+import { CategoryService } from './../services/category.service';
 import { CategoryRepository } from './../models/category.repository';
 import { Category } from './../models/category';
 import { Component, OnInit } from '@angular/core';
@@ -14,12 +15,12 @@ export class CategoryListComponent implements OnInit {
 
   selectedCategory:Category | null
 
-  constructor() {
-    this.categoryRepository=new CategoryRepository()
-    this.categories=this.categoryRepository.getCategories()
+  constructor(private categoryService:CategoryService) {
+   
    }
 
   ngOnInit(): void {
+    this.categoryService.getCategories().subscribe(data=>{this.categories=data })
   }
 
   displayAll=true
