@@ -2,7 +2,7 @@ import { Product } from './../models/product';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map,delay } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -28,13 +28,14 @@ export class ProductService {
           }
         }
         return products
-      })
+      }),
+      delay(1000)
     )
   }
   createProduct(product:Product):Observable<Product>{
     return this.http.post<Product>(this.url+"products.json",product)
   }
   getProductById(id:string):Observable<Product>{
-    return this.http.get<Product>(this.url+"products/"+id+".json")
+    return this.http.get<Product>(this.url+"products/"+id+".json").pipe(delay(1000))
   }
 }

@@ -16,15 +16,22 @@ export class ProductDetailComponent implements OnInit {
   // @Output() unSelectEvent=new EventEmitter<void>()
 
   product:Product
-  productRepository:ProductRepository
+  loading:boolean=false
+
   constructor(private route:ActivatedRoute,private productService:ProductService) { 
-    this.productRepository=new ProductRepository()
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(param=>
-    {const id=param["productId"]
-      this.productService.getProductById(id).subscribe(result=>{this.product={...result,id:id}})
+    {
+      this.loading=true
+      const id=param["productId"]
+      this.productService.getProductById(id)
+      .subscribe(result=>
+        {
+          this.product={...result,id:id}
+          this.loading=false
+        })
     })
   }
 

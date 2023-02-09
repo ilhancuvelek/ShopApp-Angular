@@ -13,19 +13,21 @@ import { Component, OnInit } from '@angular/core';
 export class ProductListComponent implements OnInit {
 
   products:Product[]=[]
-  productRepository:ProductRepository
-  
-  // selectedProduct:Product | null
+  loading:boolean=false
 
   constructor(private route:ActivatedRoute,private productService:ProductService) { 
-    //this.productRepository=new ProductRepository()
-    // this.products=this.productRepository.getProducts()
   }
 
   ngOnInit(): void {
     this.route.params.subscribe(param=>
       {
-        this.productService.getProducts(param["categoryId"]).subscribe(data=>{this.products=data})
+        this.loading=true
+        this.productService.getProducts(param["categoryId"])
+        .subscribe(data=>
+          {
+            this.products=data
+            this.loading=false
+          })
       })
   }
   // selectProduct(product:Product){
