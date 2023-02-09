@@ -21,7 +21,7 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title">{{product.name}}</h5>
-                        <p class="card-text">{{product.description}}</p>
+                        <p class="card-text" [innerHtml]="product.description"></p><!-- ckeditor için -->
                         <!-- <button (click)="selectProduct(product)" class="btn btn-success">Ürünü Seç</button> -->
                         <button routerLink="/products/{{product.id}}" class="btn btn-success">Ürün Detay</button>
                     </div>

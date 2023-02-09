@@ -8,7 +8,7 @@
             <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">Ürün Adı : {{product.name}}</h5>
-                    <p class="card-text">Açıklama :{{product.description}}</p>
+                    <p class="card-text" [innerHtml]="product.description"></p><!-- ckeditor için -->
                     <p class="card-text">Fiyat : {{product.price}} ₺ </p>
                     <!-- <button (click)="unselectProduct()" class="btn btn-success">Seçimi Kaldır</button> -->
                 </div>
