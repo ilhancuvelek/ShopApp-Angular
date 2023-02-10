@@ -1,3 +1,4 @@
+import { AuthComponent } from './auth/auth.component';
 import { CategoryCreateComponent } from './category-create/category-create.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import {  ProductDetailComponent } from './product-list/product-detail/product-detail.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path:"products",component:ProductListComponent},
   {path:"products/:productId",component:ProductDetailComponent},
   {path:"products/category/:categoryId",component:ProductListComponent},
+  {path:"auth",component:AuthComponent},
   
 ];
 
