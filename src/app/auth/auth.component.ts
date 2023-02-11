@@ -12,7 +12,9 @@ import { Component, OnInit } from '@angular/core';
 export class AuthComponent implements OnInit {
 
   loading:boolean=false
+  error:string=""
   isLoginMode=false
+
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
@@ -25,6 +27,7 @@ export class AuthComponent implements OnInit {
       return
     }
     this.loading=true
+    
     const email=form.value.email
     const password=form.value.password
 
@@ -36,10 +39,16 @@ export class AuthComponent implements OnInit {
       authResponse = this.authService.register(email,password)
     }
 
-    authResponse.subscribe(result=>
+    authResponse.subscribe(
       {
-        this.loading=false
-        console.log(result)
+        next: (response) => {
+          this.loading=false
+          this.error=""
+        },
+        error:(err)=>{
+          this.loading=false
+          this.error=err
+        }
       })
   }
 }
