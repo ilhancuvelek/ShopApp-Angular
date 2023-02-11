@@ -1,3 +1,5 @@
+import { Observable } from 'rxjs';
+import { AuthResponse } from './../models/authResponse';
 import { AuthService } from './../services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthComponent implements OnInit {
 
+  loading:boolean=false
   isLoginMode=false
   constructor(private authService:AuthService) { }
 
@@ -21,14 +24,22 @@ export class AuthComponent implements OnInit {
     if(form.invalid){
       return
     }
-
+    this.loading=true
     const email=form.value.email
     const password=form.value.password
 
+    let authResponse:Observable<AuthResponse>
+
     if (this.isLoginMode) {
-      console.log("login mode...")
+      authResponse = this.authService.login(email,password)
     }else{
-      this.authService.register(email,password).subscribe(result=>{console.log(result)})
+      authResponse = this.authService.register(email,password)
     }
+
+    authResponse.subscribe(result=>
+      {
+        this.loading=false
+        console.log(result)
+      })
   }
 }
