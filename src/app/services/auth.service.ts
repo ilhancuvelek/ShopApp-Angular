@@ -1,8 +1,10 @@
+import { catchError, tap } from 'rxjs/operators';
+import { User } from './../models/user';
 import { AuthResponse } from './../models/authResponse';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,6 +21,15 @@ export class AuthService {
       password:password,
       returnSecureToken:true
     }).pipe(
+      tap(response=>{
+        const expirationDate=new Date(new Date().getTime()+(+response.expiresIn*1000))
+        const user=new  User(
+          response.email,
+          response.localId,
+          response.idToken,
+          expirationDate
+        )
+      }),
       catchError(this.handleError)
     )
   }
@@ -29,6 +40,15 @@ export class AuthService {
       password:password,
       returnSecureToken:true
     }).pipe(
+      tap(response=>{
+        const expirationDate=new Date(new Date().getTime()+(+response.expiresIn*1000))
+        const user=new  User(
+          response.email,
+          response.localId,
+          response.idToken,
+          expirationDate
+        )
+      }),
       catchError(this.handleError)
     )
   }
