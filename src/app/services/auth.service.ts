@@ -55,6 +55,10 @@ export class AuthService {
       this.user.next(loadedUser)
     }
   }
+  logOut(){
+    this.user.next(null)
+    localStorage.removeItem("user")
+  }
 
   private handleError(err:HttpErrorResponse){
     let message="hata oluştu"

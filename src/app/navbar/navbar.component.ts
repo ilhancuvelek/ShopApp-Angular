@@ -10,12 +10,20 @@ export class NavbarComponent implements OnInit {
 
   isAuthenticated:boolean=false
 
+  isAdmin:boolean=false
+
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
     this.authService.user.subscribe(user=>{
       this.isAuthenticated=!!user //user null ise ilk ! nullu false yapar ikinci ! true yapar
+
+      this.isAdmin=user?.email=="info@ilhan.com"
     })
+  }
+
+  logout(){
+    this.authService.logOut()
   }
 
 }
