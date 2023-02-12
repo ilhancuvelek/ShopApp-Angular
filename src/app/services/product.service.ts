@@ -46,7 +46,7 @@ export class ProductService {
         take(1),
         tap(user => console.log(user)),
         exhaustMap(user => {
-            return this.http.post<Product>(this.url + "products.json?auth=" + user?.getToken(), product);//"products.json?auth=" + user?.getToken() firebase da böyle olması gerekiyor
+            return this.http.post<Product>(this.url + "products.json?auth=" + user?.token, product);//"products.json?auth=" + user?.getToken() firebase da böyle olması gerekiyor
         })
     );
 }
