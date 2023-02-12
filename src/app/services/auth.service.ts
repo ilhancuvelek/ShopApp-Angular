@@ -12,12 +12,12 @@ export class AuthService {
 
   user=new BehaviorSubject<User | null>(null)
 
-  apiKey="AIzaSyCMjiiz6ZshGFvKJJ8M-0oeoAnFhm7UARk"
+  apiKey=""
 
   constructor(private http:HttpClient) { }
 
   register(email:string,password:string){
-    return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+this.apiKey,
+    return this.http.post<AuthResponse>(""+this.apiKey,
     {
       email:email,
       password:password,
@@ -30,7 +30,7 @@ export class AuthService {
     )
   }
   login(email:string,password:string){
-    return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="+this.apiKey,
+    return this.http.post<AuthResponse>(""+this.apiKey,
     {
       email:email,
       password:password,
