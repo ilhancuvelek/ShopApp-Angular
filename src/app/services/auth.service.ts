@@ -3,20 +3,22 @@ import { User } from './../models/user';
 import { AuthResponse } from './../models/authResponse';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { throwError } from 'rxjs';
+import { Subject, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  user=new Subject<User>()
+
   apiKey=""
 
   constructor(private http:HttpClient) { }
 
   register(email:string,password:string){
-    return this.http.post<AuthResponse>(""+this.apiKey
-    ,{
+    return this.http.post<AuthResponse>(""+this.apiKey,
+    {
       email:email,
       password:password,
       returnSecureToken:true
@@ -29,14 +31,15 @@ export class AuthService {
           response.idToken,
           expirationDate
         )
+        this.user.next(user)
       }),
       catchError(this.handleError)
     )
   }
   login(email:string,password:string){
-    return this.http.post<AuthResponse>(""+this.apiKey
-    ,
-    {email:email,
+    return this.http.post<AuthResponse>(""+this.apiKey,
+    {
+      email:email,
       password:password,
       returnSecureToken:true
     }).pipe(
@@ -48,6 +51,8 @@ export class AuthService {
           response.idToken,
           expirationDate
         )
+
+        this.user.next(user)
       }),
       catchError(this.handleError)
     )
