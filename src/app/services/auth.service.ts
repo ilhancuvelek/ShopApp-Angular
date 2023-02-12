@@ -12,12 +12,12 @@ export class AuthService {
 
   user=new BehaviorSubject<User | null>(null)
 
-  apiKey=""
+  apiKey="AIzaSyCMjiiz6ZshGFvKJJ8M-0oeoAnFhm7UARk"
 
   constructor(private http:HttpClient) { }
 
   register(email:string,password:string){
-    return this.http.post<AuthResponse>(""+this.apiKey,
+    return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key="+this.apiKey,
     {
       email:email,
       password:password,
@@ -30,7 +30,7 @@ export class AuthService {
     )
   }
   login(email:string,password:string){
-    return this.http.post<AuthResponse>(""+this.apiKey,
+    return this.http.post<AuthResponse>("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key="+this.apiKey,
     {
       email:email,
       password:password,
@@ -42,6 +42,20 @@ export class AuthService {
       catchError(this.handleError)
     )
   }
+
+  autoLogin(){
+    if (localStorage.getItem("user")==null) {
+      return
+    }
+    const user=JSON.parse(localStorage.getItem("user")||"{}")
+
+    const loadedUser=new User(user.email,user.id,user._token,new Date(user._tokenExpirationDate))
+
+    if (loadedUser.token) {
+      this.user.next(loadedUser)
+    }
+  }
+
   private handleError(err:HttpErrorResponse){
     let message="hata oluştu"
 
@@ -75,8 +89,8 @@ export class AuthService {
       expirationDate
     );
 
-    console.log(user);
-
     this.user.next(user);
+
+    localStorage.setItem("user",JSON.stringify(user))// auto login için sakladık token ı
   }
 }
