@@ -58,5 +58,14 @@ export class ProductService {
             return this.http.post<Product>(this.url + "products.json?auth=" + user?.token, product);//"products.json?auth=" + user?.getToken() firebase da böyle olması gerekiyor
         })
     );
-}
+  }
+  deleteProduct(product: Product): Observable<Product>{
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap(user => {
+        return this.http.delete<Product>(this.url + "products/"+product.id+".json?auth=" + user?.token);//"products.json?auth=" + user?.getToken() firebase da böyle olması gerekiyor
+      })
+    );
+    
+  }
 }

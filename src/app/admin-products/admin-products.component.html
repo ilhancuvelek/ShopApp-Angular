@@ -11,7 +11,7 @@
                     <!-- <button (click)="selectProduct(product)" class="btn btn-success">Ürünü Seç</button> -->
                     <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                         <button routerLink="/products/edit/{{product.id}}" class="btn btn-warning">Edit</button>
-                        <button routerLink="/products/{{product.id}}" class="btn btn-danger">Delete</button>
+                        <button (click)="deleteProduct(product)" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>

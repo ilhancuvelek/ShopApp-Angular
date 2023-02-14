@@ -1,6 +1,7 @@
+import { NgForm } from '@angular/forms';
 import { Product } from './../models/product';
 import { ProductService } from './../services/product.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -13,7 +14,7 @@ export class AdminProductsComponent implements OnInit {
   products:Product[]=[]
   loading:boolean=false
 
-  constructor(private route:ActivatedRoute,private productService:ProductService) { 
+  constructor(private route:ActivatedRoute,private productService:ProductService,private router:Router) { 
   }
 
   ngOnInit(): void {
@@ -27,6 +28,11 @@ export class AdminProductsComponent implements OnInit {
             this.loading=false
           })
       })
+  }
+  deleteProduct(product:Product){
+    this.productService.deleteProduct(product).subscribe(prd=>{
+      this.router.navigate(['/products'])
+    })
   }
 
 }
