@@ -1,3 +1,5 @@
+import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { ProductUpdateComponent } from './product-update/product-update.component';
 import { AuthGuard } from './guards/auth-guard';
 import { AdminGuard } from './guards/admin-guard';
 import { AuthComponent } from './auth/auth.component';
@@ -13,8 +15,10 @@ const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"products/create",component:ProductCreateComponent,canActivate:[AdminGuard]},
   {path:"categories/create",component:CategoryCreateComponent,canActivate:[AdminGuard]},
+  {path:"admin/products",component:AdminProductsComponent,canActivate:[AdminGuard]},
   {path:"products",component:ProductListComponent},
   {path:"products/:productId",component:ProductDetailComponent,canActivate:[AuthGuard]},
+  {path:"products/edit/:productId",component:ProductUpdateComponent,canActivate:[AdminGuard]},
   {path:"products/category/:categoryId",component:ProductListComponent},
   {path:"auth",component:AuthComponent},
   

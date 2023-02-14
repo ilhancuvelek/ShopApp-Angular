@@ -14,6 +14,8 @@ import { CategoryCreateComponent } from './category-create/category-create.compo
 import { FormsModule } from '@angular/forms';
 import { CKEditorModule } from 'ckeditor4-angular';
 import { AuthComponent } from './auth/auth.component';
+import { ProductUpdateComponent } from './product-update/product-update.component';
+import { AdminProductsComponent } from './admin-products/admin-products.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +26,9 @@ import { AuthComponent } from './auth/auth.component';
     HomeComponent,
     ProductCreateComponent,
     CategoryCreateComponent,
-    AuthComponent
+    AuthComponent,
+    ProductUpdateComponent,
+    AdminProductsComponent
   ],
   imports: [
     BrowserModule,

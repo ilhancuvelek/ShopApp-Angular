@@ -1,38 +1,50 @@
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active" >Shop App</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/products']" routerLinkActive="router-link-active" >Products</a>
-          </li>
-          <li class="nav-item" *ngIf="isAdmin">
-            <a class="nav-link" [routerLink]="['/products/create']" routerLinkActive="router-link-active" >Create Product</a>
-          </li>
-          <li class="nav-item" *ngIf="isAdmin">
-            <a class="nav-link" [routerLink]="['/categories/create']" routerLinkActive="router-link-active" >Create Category</a>
-          </li>
-          
-        </ul>
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li *ngIf="!isAuthenticated" class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/auth']">Log-In</a>
-          </li>
-          <li *ngIf="!isAuthenticated" class="nav-item">
-            <a class="nav-link active" aria-current="page" [routerLink]="['/auth']">Register</a>
-          </li>
-          <li *ngIf="isAuthenticated" class="nav-item">
-            <a (click)="logout()" class="nav-link active" aria-current="page" [routerLink]="['/auth']">Log-Out</a>
-          </li>
-        </ul>
-        
-      </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active">Shop App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div *ngIf="isAdmin" class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/']">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/products']" routerLinkActive="router-link-active">Products</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Admin
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark">
+            <li class="nav-item" *ngIf="isAdmin">
+              <a class="nav-link" [routerLink]="['/products/create']" routerLinkActive="router-link-active">Create
+                Product</a>
+            </li>
+            <li class="nav-item" *ngIf="isAdmin">
+              <a class="nav-link" [routerLink]="['/categories/create']" routerLinkActive="router-link-active">Create
+                Category</a>
+            </li>
+            <li class="nav-item" *ngIf="isAdmin">
+              <a class="nav-link" [routerLink]="['/admin/products']" routerLinkActive="router-link-active">Admin
+                Products</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li *ngIf="!isAuthenticated" class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/auth']">Log-In</a>
+        </li>
+        <li *ngIf="!isAuthenticated" class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['/auth']">Register</a>
+        </li>
+        <li *ngIf="isAuthenticated" class="nav-item">
+          <a (click)="logout()" class="nav-link active" aria-current="page" [routerLink]="['/auth']">Log-Out</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>

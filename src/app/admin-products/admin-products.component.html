@@ -1,0 +1,23 @@
+<div *ngFor="let product of products">
+    <div *ngIf="product.isActive" class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img src="/assets/images/{{product.imageUrl}}" class="img-fluid rounded-start" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{product.name}}</h5>
+                    <p class="card-text" [innerHtml]="product.description"></p><!-- ckeditor için -->
+                    <!-- <button (click)="selectProduct(product)" class="btn btn-success">Ürünü Seç</button> -->
+                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <button routerLink="/products/edit/{{product.id}}" class="btn btn-warning">Edit</button>
+                        <button routerLink="/products/{{product.id}}" class="btn btn-danger">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="loading" class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+</div>

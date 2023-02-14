@@ -9,7 +9,7 @@ import { map,delay, take, exhaustMap, tap } from 'rxjs/operators';
 })
 export class ProductService {
 
-  private url ="https://ng-shopapp-dc819-default-rtdb.firebaseio.com/"
+  private url =""
 
   constructor(private http:HttpClient,private authService:AuthService) { }
 
@@ -36,6 +36,15 @@ export class ProductService {
 
   getProductById(id:string):Observable<Product>{
     return this.http.get<Product>(this.url+"products/"+id+".json").pipe(delay(1000))
+  }
+  updateProduct(product: Product):Observable<Product>{
+      return this.authService.user.pipe(
+            take(1),
+            tap(user => console.log(user)),
+            exhaustMap(user => {
+                return this.http.patch<Product>(this.url + "products/"+product.id+".json?auth=" + user?.token, product);//"products.json?auth=" + user?.getToken() firebase da böyle olması gerekiyor
+            })
+        );
   }
 
   createProduct(product: Product): Observable<Product> {
