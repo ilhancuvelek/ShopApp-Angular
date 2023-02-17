@@ -16,6 +16,7 @@ import { CKEditorModule } from 'ckeditor4-angular';
 import { AuthComponent } from './auth/auth.component';
 import { ProductUpdateComponent } from './product-update/product-update.component';
 import { AdminProductsComponent } from './admin-products/admin-products.component';
+import { SearchComponent } from './search/search.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +29,8 @@ import { AdminProductsComponent } from './admin-products/admin-products.componen
     CategoryCreateComponent,
     AuthComponent,
     ProductUpdateComponent,
-    AdminProductsComponent
+    AdminProductsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

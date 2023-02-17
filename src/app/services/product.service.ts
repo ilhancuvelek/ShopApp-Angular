@@ -68,4 +68,26 @@ export class ProductService {
     );
     
   }
+
+  getProductsByQuery(query):Observable<Product[]>{
+    return this.http.get<Product[]>(this.url+"products.json").
+    pipe(
+      map(data=>{
+        const products:Product[]=[]
+
+        for (const key in data) {
+          if (query) {
+            if (data[key].name.includes(query)) {
+              products.push({...data[key],id:key})
+            }
+          }else{
+            products.push({...data[key],id:key})
+          }
+        }
+        return products
+      }
+
+      )
+    )
+  }
 }

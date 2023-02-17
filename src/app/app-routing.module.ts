@@ -17,6 +17,7 @@ const routes: Routes = [
   {path:"categories/create",component:CategoryCreateComponent,canActivate:[AdminGuard]},
   {path:"admin/products",component:AdminProductsComponent,canActivate:[AdminGuard]},
   {path:"products",component:ProductListComponent},
+  {path:"products/search/:query",component:ProductListComponent},
   {path:"products/:productId",component:ProductDetailComponent,canActivate:[AuthGuard]},
   {path:"products/edit/:productId",component:ProductUpdateComponent,canActivate:[AdminGuard]},
   {path:"products/category/:categoryId",component:ProductListComponent},
