@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 })
 export class CategoryService {
 
-  url="https://ng-shopapp-dc819-default-rtdb.firebaseio.com/"
+  url=""
   constructor(private http:HttpClient) { }
 
   getCategories():Observable<Category[]>{
